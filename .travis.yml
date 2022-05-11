@@ -8,5 +8,5 @@ before_install:
   - chmod +x ./kustomize
 script:
   - "./kustomize build example|grep ' image: '|grep -v '{' > images"
-  - sed -i 's/.*images://' images
-  - cat images
+  - sed -i 's/.*image://' images
+  - cat images |awk -F ':' '{print $NF}'
