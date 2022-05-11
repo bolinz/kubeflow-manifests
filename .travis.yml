@@ -7,5 +7,5 @@ before_install:
   - curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
   - chmod +x ./kustomize
 script:
-  - "./kustomize build example|grep ' image: '|grep -v '{'" > images
+  - "./kustomize build example|grep ' image: '|grep -v '{' > images"
   - sed '/images:/p' images
