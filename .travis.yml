@@ -9,4 +9,4 @@ before_install:
 script:
   - "./kustomize build example|grep ' image: '|grep -v '{' > images"
   - sed '/images:/p' images|sed 's/.*images://' > images
-  - cat images | awk -F ':' '{print $1}'
+  - cat images
