@@ -9,4 +9,4 @@ before_install:
 script:
   - "./kustomize build example|grep ' image: '|grep -v '{' > images"
   - sed -i 's/.*image://' images
-  - cat images |uniq|awk -F ':' '{print $NF}'
+  - cat images |uniq|awk -F ':' '{print $@ $NF}'
