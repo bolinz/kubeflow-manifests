@@ -10,7 +10,7 @@ before_install:
 script:
   - "./kustomize build example|grep ' image: '|grep -v '{' > images"
   - sed -i 's/.*image://' images
-  - cat images |uniq|awk -F ':' '{print $0 " " $1 " " $NF }'|awk '{gsub("\\.|\\/|@","_",$2) ;print $1" docker.io/bolinz/aaa:"$2"_"$3}' > docker_hub_action
+  - cat images |uniq|awk -F ':' '{print $0 " " $1 " " $NF }'|awk '{gsub("\\.|\\/|@","_",$2) ;print $1" docker.io/bolinz/aaa:"$2"_"substr($3,1,5)}' > docker_hub_action
   - cat docker_hub_action | awk '{system("docker pull " $1)}'
   - cat docker_hub_action | awk '{system("docker tag "$1" "$2)}'
   - cat docker_hub_action | awk '{system("docker push "$2)}'
