@@ -2,6 +2,7 @@ language: minimal
 services:
   - docker
 before_install:
+  - echo "${docker_token}"|docker login -u bolinz --password-stdin
   - docker pull k8s.gcr.io/kustomize/kustomize:v3.8.7
   - docker run k8s.gcr.io/kustomize/kustomize:v3.8.7 version
   - curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
