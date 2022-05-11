@@ -4,5 +4,7 @@ services:
 before_install:
   - docker pull k8s.gcr.io/kustomize/kustomize:v3.8.7
   - docker run k8s.gcr.io/kustomize/kustomize:v3.8.7 version
+  - curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
 script:
-  - which docker
+  - which kubectl
+  - which kustomize
