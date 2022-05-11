@@ -10,4 +10,4 @@ before_install:
 script:
   - "./kustomize build example|grep ' image: '|grep -v '{' > images"
   - sed -i 's/.*image://' images
-  - cat images |uniq|awk -F ':' '{print $0" "$1" "$NF}'
+  - cat images |uniq|awk -F ':' '{gsub("\\.|\\/|@","_",$1) ;print $0" ""docker.io/bolinz/"$1":"$NF" "$NF}'
